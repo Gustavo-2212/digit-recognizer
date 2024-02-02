@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>GUI - Perceptron</title>
+</head>
+<body>
+    <h1>Reconhecedor de Dígitos</h1>
+
+    <div class="wrapper">
+        <div class="wrapper-input">
+            <h2>Entrada para Teste</h2>
+            <div class="input">
+                <div class="lines">
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                </div>
+
+                <div class="lines">
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                </div>
+
+                <div class="lines">
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                </div>
+
+                <div class="lines">
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                </div>
+
+                <div class="lines">
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                    <div class="cells">-</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper-output">
+            <button onclick="train()">TREINAR</button>
+            <button onclick="sendInput()" style="visibility: hidden;" id="test-btn">TESTAR</button>
+
+            <div class="result" id="result"></div>
+        </div>
+
+        <div class="weights" id="weights">
+            <!-- 10 divs: 1 para cada neurônio -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
