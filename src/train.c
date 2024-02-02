@@ -91,10 +91,11 @@ int main() {
     fprintf(fp, "\n");
     fclose(fp);
 
-    printf("<h3>Ciclos de treinamento: %d</h3><br>", cycles);
-    printf("<h4>Pesos dos Neuronios:</h4><br>");
+    printf("<h2>Ciclos de treinamento: %d</h2><br>", cycles);
+    printf("<h2>Taxa de aprendizado: %.6f</h2><br>", learning_rate);
+    printf("<h4>Pesos dos Neurônios</h4><br>");
     for(int i = 0; i < 10; i++) {
-        printf("<b>NEURONIO %d</b><br>", i+1);
+        printf("<b>NEURÔNIO %d</b><br>", i+1);
         printf("<p>[%.6f,\t", w[i][0]);
         for(int j = 1; j < 19; j++)
             printf("%.6f,\t", w[i][j]);
