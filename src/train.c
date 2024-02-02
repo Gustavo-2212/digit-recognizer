@@ -91,24 +91,24 @@ int main() {
     fprintf(fp, "\n");
     fclose(fp);
 
-    printf("Ciclos de treinamento: %d\n\n", cycles);
-    printf("Pesos dos Neuronios:\n\n");
+    printf("<h3>Ciclos de treinamento: %d</h3><br>", cycles);
+    printf("<h4>Pesos dos Neuronios:</h4><br>");
     for(int i = 0; i < 10; i++) {
-        printf("NEURONIO %d\n", i+1);
-        printf("[%.6f,\t", w[i][0]);
+        printf("<b>NEURONIO %d</b><br>", i+1);
+        printf("<p>[%.6f,\t", w[i][0]);
         for(int j = 1; j < 19; j++)
             printf("%.6f,\t", w[i][j]);
 
-        printf("%.6f]\n\n", w[i][19]);
+        printf("%.6f]</p><br><br>", w[i][19]);
         free(w[i]);
     }
 
-    printf("BIAS\n");
-    printf("[%.6f,\t", b[0]);
+    printf("<h4>BIAS</h4>");
+    printf("<p>[%.6f,\t", b[0]);
     for(int i = 1; i < 9; i++)
         printf("%.6f,\t", b[i]);
 
-    printf("%.6f]\n\n", b[9]);
+    printf("%.6f]</p><br>", b[9]);
 
     return EXIT_SUCCESS;
 }

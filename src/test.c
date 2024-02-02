@@ -16,13 +16,18 @@ char* test_weights(int letter[], float w[][20], float b[]) {
         }
     }
 
-    printf("\n");
+    printf("<br>");
+    printf("<div id=\"output-sup\"> \
+    <ul id=\"list-analog\">");
     for(int i = 0; i < 10; i++)
-        printf("Y%d:\t %.6f\n", i+1, y[i]);
+        printf("<li>Y%d: %.6f</li>", i+1, y[i]);
+    printf("</ul>");
 
-    printf("\n");
+    printf("<ul id=\"list-digital\">");
     for(int i = 0; i < 10; i++)
-        printf("Y%d:\t %d\n", i+1, ((y[i] >= theta) ? 1 : -1));
+        printf("<li>Y%d:\t %d</li>", i+1, ((y[i] >= theta) ? 1 : -1));
+    printf("</ul>\
+    </div>");
 
     for (int i = 0; i < 10; i++) {
         if (y[i] >= theta) {
@@ -80,7 +85,9 @@ int main(int argc, char* argv[]) {
     fclose(fp);
     // Calculando os valores de saída com base nos pesos
     char* result = test_weights(letter, w, b);
-    printf("\nRESULTADO: %s\n", result);
+    printf("<div id=\"output-inf\">");
+    printf("<h3>RESULTADO: %s</h3>", result);
+    printf("</div>");
 
     return EXIT_SUCCESS;
 }
