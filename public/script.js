@@ -40,9 +40,9 @@ async function train() {
 
         initializeTestInput();
         document.getElementById('result').style.visibility = 'visible';
-        document.getElementById('result').innerText = 'NEURÔNIOS TREINADOS';
+        document.getElementById('result').innerHTML = '<h2>NEURÔNIOS TREINADOS</h2>';
         document.getElementById('weights').style.visibility = 'visible';
-        document.getElementById('weights').innerText = result;
+        document.getElementById('weights').innerHTML = result;
         document.getElementById('test-btn').style.visibility = 'visible';
     }
     catch(error) {
@@ -61,6 +61,6 @@ async function sendInput() {
     .then(response => response.text())
     .then(data => {
         // Exibe a saída do programa em C na div 'output'
-        document.getElementById('result').innerText = data;
+        document.getElementById('result').innerHTML = data;
     });
 }

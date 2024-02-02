@@ -60,7 +60,9 @@
     padding: 5px;
     border: 1px solid black;
     text-align: center;
-    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
 
 .lines {
@@ -87,4 +89,22 @@ button {
     margin: 5px;
     width: 100px;
     height: auto;
+}
+
+/* DIVs OUTPUT */
+#output-sup {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#output-inf {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: green;
 }
