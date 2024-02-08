@@ -9,16 +9,14 @@
 Este projeto consiste em implementações relacionadas a redes neurais artificiais. Inclui um perceptron para reconhecer dígitos, treinado com o algoritmo de aprendizagem supervisionada e testado em conjunto de dados específicos.
 
 ### Conteúdo do Repositório
-- **train.c:** Código fonte para treinamento do perceptron.
-- **test.c:** Código fonte para testar os pesos do perceptron em novos dados.
-- **weights.txt:** Arquivo de texto contendo os pesos do perceptron.
+- **build:** Diretório com os arquivos compilados **train.c** e **test.c**
+- **public:** Diretório com os arquivos para implementação da GUI (**index.html**, **index.css** e **script.js**)
+- **src:** Diretório com os arquivos fonte (**server.js**, **train.c**, **test.c**) e um diretório temporário **temp** para armazenar os pesos gerados pelo algoritmo de treinamento (**weights.txt**)
+- **Makefile:** Arquivo de compilação automatizada
 - **README.md:** Este arquivo que fornece informações sobre o projeto.
 
-### Instruções de Uso
-1. Compile o arquivo train.c para gerar o executável `train`.
-2. Execute o arquivo `train` para treinar o perceptron e gerar o arquivo `weights.txt`.
-3. Compile o arquivo test.c para gerar o executável `test`.
-4. Execute o arquivo `test` e forneça uma entrada para testar os pesos do perceptron.
+### Instruções de Compilação
+1. Compile os arquivos executando `make all` do diretório raiz
 
 ### Executando o Projeto
 

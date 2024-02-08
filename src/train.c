@@ -121,7 +121,7 @@ void print_result(const int cycles, const float learning_rate, float *w[], float
 
 int log_weights(float *w[], float b[]) {
     // Escreve os pesos no arquivo weights.txt
-    FILE *fp = fopen("weights.txt", "w");
+    FILE *fp = fopen("src/temp/weights.txt", "w");
     if (fp == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return EXIT_FAILURE;

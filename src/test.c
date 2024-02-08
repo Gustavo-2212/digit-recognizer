@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Abrindo o arquivo weights.txt
-    FILE* fp = fopen("weights.txt", "r");
+    FILE* fp = fopen("src/temp/weights.txt", "r");
     if (fp == NULL) {
         printf("Erro ao abrir o arquivo weights.txt\n");
         return 1;
@@ -47,14 +47,16 @@ int main(int argc, char* argv[]) {
         }
         row++;
     }
-
     fclose(fp);
+    
     // Calculando os valores de saída com base nos pesos
     char* result = test_weights(letter, w, b);
     printf("<div id=\"output-inf\">");
     printf("<h3>RESULTADO: %s</h3>", result);
     printf("</div>");
 
+    free(token);
+    free(result);
     return EXIT_SUCCESS;
 }
 
@@ -81,6 +83,7 @@ char* test_weights(const int letter[], const float w[][20], const float b[]) {
         }
     }
 
+    free(result);
     return "Nao reconheceu!";
 }
 

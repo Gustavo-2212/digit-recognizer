@@ -10,7 +10,7 @@ app.use(cors()); // Adicione esta linha para habilitar o CORS para todas as orig
 app.use(express.json());
 
 app.get('/train', (_, res) => {
-    const process = spawn('src/train.exe');
+    const process = spawn('build/train.exe');
 
     let result = '';
     process.stdout.on('data', data => {
@@ -30,7 +30,7 @@ app.get('/train', (_, res) => {
 
 app.post('/input', (req, res) => {
     const input = req.body.input.flat();
-    const process = spawn('src/test.exe', ['['+input.join(',')+']']);
+    const process = spawn('build/test.exe', ['['+input.join(',')+']']);
 
     let result = '';
     process.stdout.on('data', data => {
