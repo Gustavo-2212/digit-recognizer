@@ -3,6 +3,13 @@
 #include <stdbool.h>
 #include <time.h>
 
+
+// Fazer com 4 neurônios (númerio binário)
+
+
+int  log_weights(float *[], float[]);
+void print_result(const int, const float, float *[], float[]);
+
 int main() {
     srand(time(NULL));
 
@@ -13,7 +20,7 @@ int main() {
         {-1,1,1,1,-1,-1,-1,1,-1,1,1,1,-1,1,-1,-1,-1,1,1,1},         // 2
         {1,1,1,-1,-1,-1,1,-1,1,1,1,-1,-1,-1,1,-1,1,1,1,-1},         // 3
         {-1,1,-1,1,-1,1,-1,1,-1,1,1,1,-1,-1,-1,1,-1,-1,-1,1},       // 4
-        {1,1,1,-1,1,-1,-1,-1,1,1,1,-1,-1,-1,1,-1,1,1,1,-1},         // 5
+        {-1,1,1,1,-1,1,-1,-1,-1,1,1,1,-1,-1,-1,1,-1,1,1,1},         // 5
         {-1,1,1,1,-1,1,-1,-1,-1,1,1,1,-1,1,-1,1,-1,1,1,1},          // 6
         {1,1,1,-1,-1,-1,1,-1,-1,1,1,1,-1,-1,1,-1,-1,-1,1,-1},       // 7
         {-1,1,1,1,-1,1,-1,1,-1,1,1,1,-1,1,-1,1,-1,1,1,1},           // 8
@@ -53,44 +60,44 @@ int main() {
     // Treinamento do perceptron
     while (changed) {
         changed = false;
-        for (int i = 0; i < 10; i++) {
-            float yi_in = b[i];
-            for (int j = 0; j < 20; j++) {
-                yi_in += w[i][j] * entries[i][j];
-            }
-            int yi = (yi_in >= limit_theta) ? 1 : -1;
 
-            for (int j = 0; j < 20; j++) {
-                if (yi != output[i][i]) {
-                    changed = true;
-                    w[i][j] += learning_rate * output[i][i] * entries[i][j];
-                    b[i]    += learning_rate * output[i][i];
+        // Cada entrada deve passar pelos 10 neurônios
+        for(int k = 0; k < 10; k++) {
+            int *entrie = entries[k];
+
+            for (int i = 0; i < 10; i++) { // Percorre cada neurônio
+                float yi_in = b[i];
+                for (int j = 0; j < 20; j++) {
+                    yi_in += w[i][j] * entrie[j];
                 }
+                int yi = (yi_in >= limit_theta) ? 1 : -1;
+
+                if(yi != output[k][i]) {
+                    changed = true;
+                    for(int j = 0; j < 20; j++) {
+                        w[i][j] += learning_rate * output[k][i] * entrie[j];
+                    }
+                    b[i] += learning_rate * output[k][i];
+                }
+                if(changed) break;
             }
+            if(changed) break;
         }
         cycles++;
     }
 
-    // Escreve os pesos no arquivo weights.txt
-    FILE *fp = fopen("weights.txt", "w");
-    if (fp == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        return 1;
-    }
+    // Gera o arquivo com os pesos para serem
+    // usados pelo algoritmo de teste
+    log_weights(w, b);
 
-    // Escreve os pesos no arquivo
-    for(int i = 0; i < 10; i++) {
-        for(int j = 0; j < 20; j++) {
-            fprintf(fp, "%.6f ", w[i][j]);
-        }
-        fprintf(fp, "\n");
-    }
-    for(int i = 0; i < 10; i++) {
-        fprintf(fp, "%.6f ", b[i]);
-    }
-    fprintf(fp, "\n");
-    fclose(fp);
+    // Gera a saída dos pesos para o GUI
+    print_result(cycles, learning_rate, w, b);
 
+    return EXIT_SUCCESS;
+}
+
+
+void print_result(const int cycles, const float learning_rate, float *w[], float b[]) {
     printf("<h2>Ciclos de treinamento: %d</h2><br>", cycles);
     printf("<h2>Taxa de aprendizado: %.6f</h2><br>", learning_rate);
     printf("<h4>Pesos dos Neurônios</h4><br>");
@@ -110,6 +117,28 @@ int main() {
         printf("%.6f,\t", b[i]);
 
     printf("%.6f]</p><br>", b[9]);
+}
+
+int log_weights(float *w[], float b[]) {
+    // Escreve os pesos no arquivo weights.txt
+    FILE *fp = fopen("weights.txt", "w");
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return EXIT_FAILURE;
+    }
+
+    // Escreve os pesos no arquivo
+    for(int i = 0; i < 10; i++) {
+        for(int j = 0; j < 20; j++) {
+            fprintf(fp, "%.6f ", w[i][j]);
+        }
+        fprintf(fp, "\n");
+    }
+    for(int i = 0; i < 10; i++) {
+        fprintf(fp, "%.6f ", b[i]);
+    }
+    fprintf(fp, "\n");
+    fclose(fp);
 
     return EXIT_SUCCESS;
 }

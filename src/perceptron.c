@@ -9,6 +9,7 @@ char * test_weights(int[], float[], float[], float[], float[], float[], float[],
 int  * stoia(const char *, const int);
 int    stoi(const char *);
 
+void update_weights(float *w1[], float *w2[], float *w3[], float *w4[], float *w5[], float *w6[], float *w7[], float *w8[], float *w9[], float *w10[], float *b1, float *b2, float *b3, float *b4, float *b5, float *b6, float *b7, float *b8, float *b9, float *b10, float learning_rate, int entries[][20], int output[][10], int i);
 
 /*
 	> gcc perceptron.c
@@ -115,85 +116,186 @@ int main(int argc, char **argv) {
 			int y9 =  (y9_in >= limit_theta)  ? 1 : -1;
 			int y10 = (y10_in >= limit_theta) ? 1 : -1;
 
-			if(y1 != output[i][0]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w1[j] += learning_rate * output[i][0] * entries[i][j];
-					b1    += learning_rate * output[i][0];
-				}
+
+			while(y1 != output[i][i] ||
+				  (y2 == 1 || y3 == 1 || y4 == 1 || y5 == 1 ||
+				   y6 == 1 || y7 == 1 || y8 == 1 || y9 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y2 != output[i][1]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w2[j] += learning_rate * output[i][1] * entries[i][j];
-					b2    += learning_rate * output[i][1];
-				}
+			while(y2 != output[i][i] ||
+				  (y1 == 1 || y3 == 1 || y4 == 1 || y5 == 1 ||
+				   y6 == 1 || y7 == 1 || y8 == 1 || y9 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y3 != output[i][2]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w3[j] += learning_rate * output[i][2] * entries[i][j];
-					b3    += learning_rate * output[i][2];
-				}
+			while(y3 != output[i][i] ||
+				  (y1 == 1 || y2 == 1 || y4 == 1 || y5 == 1 ||
+				   y6 == 1 || y7 == 1 || y8 == 1 || y9 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y4 != output[i][3]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w4[j] += learning_rate * output[i][3] * entries[i][j];
-					b4    += learning_rate * output[i][3];
-				}
+			while(y4 != output[i][i] ||
+				  (y1 == 1 || y3 == 1 || y2 == 1 || y5 == 1 ||
+				   y6 == 1 || y7 == 1 || y8 == 1 || y9 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y5 != output[i][4]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w5[j] += learning_rate * output[i][4] * entries[i][j];
-					b5    += learning_rate * output[i][4];
-				}
+			while(y5 != output[i][i] ||
+				  (y1 == 1 || y3 == 1 || y4 == 1 || y2 == 1 ||
+				   y6 == 1 || y7 == 1 || y8 == 1 || y9 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y6 != output[i][5]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w6[j] += learning_rate * output[i][5] * entries[i][j];
-					b6    += learning_rate * output[i][5];
-				}
+			while(y6 != output[i][i] ||
+				  (y1 == 1 || y3 == 1 || y4 == 1 || y2 == 1 ||
+				   y5 == 1 || y7 == 1 || y8 == 1 || y9 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y7 != output[i][6]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w7[j] += learning_rate * output[i][6] * entries[i][j];
-					b7    += learning_rate * output[i][6];
-				}
+			while(y7 != output[i][i] ||
+				  (y1 == 1 || y3 == 1 || y4 == 1 || y2 == 1 ||
+				   y6 == 1 || y5 == 1 || y8 == 1 || y9 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y8 != output[i][7]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w8[j] += learning_rate * output[i][7] * entries[i][j];
-					b8    += learning_rate * output[i][7];
-				}
+			while(y8 != output[i][i] ||
+				  (y1 == 1 || y3 == 1 || y4 == 1 || y2 == 1 ||
+				   y6 == 1 || y7 == 1 || y5 == 1 || y9 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y9 != output[i][8]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w9[j] += learning_rate * output[i][8] * entries[i][j];
-					b9    += learning_rate * output[i][8];
-				}
+			while(y9 != output[i][i] ||
+				  (y1 == 1 || y3 == 1 || y4 == 1 || y2 == 1 ||
+				   y6 == 1 || y7 == 1 || y8 == 1 || y5 == 1 || y10 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
 
-			if(y10 != output[i][9]) {
-				changed = true;
-				for(int j = 0; j < 20; j++) {
-					w10[j] += learning_rate * output[i][9] * entries[i][j];
-					b10    += learning_rate * output[i][9];
-				}
+			while(y10 != output[i][i] ||
+				  (y1 == 1 || y3 == 1 || y4 == 1 || y2 == 1 ||
+				   y6 == 1 || y7 == 1 || y8 == 1 || y9 == 1 || y5 == 1)) {
+					
+					update_weights(&w1,&w2,&w3,&w4,&w5,&w6,&w7,&w8,&w9,&w10,
+								   &b1,&b2,&b3,&b4,&b5,&b6,&b7,&b8,&b9,&b10,learning_rate,
+								   entries, output, i);
+
 			}
+
+			// if(y1 != output[i][0]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w1[j] += learning_rate * output[i][0] * entries[i][j];
+			// 		b1    += learning_rate * output[i][0];
+			// 	}
+			// }
+
+			// if(y2 != output[i][1]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w2[j] += learning_rate * output[i][1] * entries[i][j];
+			// 		b2    += learning_rate * output[i][1];
+			// 	}
+			// }
+
+			// if(y3 != output[i][2]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w3[j] += learning_rate * output[i][2] * entries[i][j];
+			// 		b3    += learning_rate * output[i][2];
+			// 	}
+			// }
+
+			// if(y4 != output[i][3]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w4[j] += learning_rate * output[i][3] * entries[i][j];
+			// 		b4    += learning_rate * output[i][3];
+			// 	}
+			// }
+
+			// if(y5 != output[i][4]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w5[j] += learning_rate * output[i][4] * entries[i][j];
+			// 		b5    += learning_rate * output[i][4];
+			// 	}
+			// }
+
+			// if(y6 != output[i][5]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w6[j] += learning_rate * output[i][5] * entries[i][j];
+			// 		b6    += learning_rate * output[i][5];
+			// 	}
+			// }
+
+			// if(y7 != output[i][6]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w7[j] += learning_rate * output[i][6] * entries[i][j];
+			// 		b7    += learning_rate * output[i][6];
+			// 	}
+			// }
+
+			// if(y8 != output[i][7]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w8[j] += learning_rate * output[i][7] * entries[i][j];
+			// 		b8    += learning_rate * output[i][7];
+			// 	}
+			// }
+
+			// if(y9 != output[i][8]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w9[j] += learning_rate * output[i][8] * entries[i][j];
+			// 		b9    += learning_rate * output[i][8];
+			// 	}
+			// }
+
+			// if(y10 != output[i][9]) {
+			// 	changed = true;
+			// 	for(int j = 0; j < 20; j++) {
+			// 		w10[j] += learning_rate * output[i][9] * entries[i][j];
+			// 		b10    += learning_rate * output[i][9];
+			// 	}
+			// }
 		}
 		cycles++;
 	}
@@ -350,4 +452,38 @@ int * stoia(const char *str, const int size) {
         str++;
     }
     return array;
+}
+
+void update_weights(float *w1[], float *w2[], float *w3[], float *w4[], float *w5[], float *w6[], float *w7[], float *w8[], float *w9[], float *w10[], float *b1, float *b2, float *b3, float *b4, float *b5, float *b6, float *b7, float *b8, float *b9, float *b10, float learning_rate, int entries[][20], int output[][10], int i) {
+	for(int j = 0; j < 20; j++) {
+		*w1[j] += learning_rate * output[i][0] * entries[i][j];
+		*b1   += learning_rate * output[i][0];
+
+		*w2[j] += learning_rate * output[i][1] * entries[i][j];
+		*b2    += learning_rate * output[i][1];
+
+		*w3[j] += learning_rate * output[i][2] * entries[i][j];
+		*b3    += learning_rate * output[i][2];
+
+		*w4[j] += learning_rate * output[i][3] * entries[i][j];
+		*b4    += learning_rate * output[i][3];	
+
+		*w5[j] += learning_rate * output[i][4] * entries[i][j];
+		*b5    += learning_rate * output[i][4];
+
+		*w6[j] += learning_rate * output[i][5] * entries[i][j];
+		*b6    += learning_rate * output[i][5];
+
+		*w7[j] += learning_rate * output[i][6] * entries[i][j];
+		*b7    += learning_rate * output[i][6];
+
+		*w8[j] += learning_rate * output[i][7] * entries[i][j];
+		*b8    += learning_rate * output[i][7];
+
+		*w9[j] += learning_rate * output[i][8] * entries[i][j];
+		*b9    += learning_rate * output[i][8];
+
+		*w10[j] += learning_rate * output[i][9] * entries[i][j];
+		*b10    += learning_rate * output[i][9];
+	}
 }
