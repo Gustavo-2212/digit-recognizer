@@ -81,7 +81,7 @@ int main() {
                 }
                 if(changed) break;
             }
-            if(changed) break;
+            //if(changed) break;
         }
         cycles++;
     }
