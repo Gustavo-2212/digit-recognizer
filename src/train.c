@@ -79,9 +79,10 @@ int main() {
                     }
                     b[i] += learning_rate * output[k][i];
                 }
+
                 if(changed) break;
             }
-            //if(changed) break;
+            if(changed) break;
         }
         cycles++;
     }

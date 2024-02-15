@@ -49,16 +49,20 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="wrapper-output">
+            <div class="select-arch">
+                <h3>Arquitetura de 4 neurônios:</h3>
+                <input type="checkbox" name="select-arch" id="select-arch"/>
+            </div>
             <button onclick="train()">TREINAR</button>
             <button onclick="sendInput()" style="visibility: hidden;" id="test-btn">TESTAR</button>
-
+            
             <div class="result" id="result"></div>
         </div>
 
         <div class="weights" id="weights">
-            <!-- 10 divs: 1 para cada neurônio -->
+            <!-- 10|4 divs: 1 para cada neurônio -->
         </div>
     </div>
 

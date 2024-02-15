@@ -112,3 +112,10 @@ button {
 ul {
     text-align: left;
 }
+
+.select-arch {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center;
+    align-items: center; */
+}

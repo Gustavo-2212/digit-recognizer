@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/server.js",
   "scripts": {
-    "start": "node ./src/server.js"
+    "start": "make clean && make all && node ./src/server.js"
   },
   "author": "Gustavo Alves de Oliveira",
   "license": "ISC",

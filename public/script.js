@@ -6,9 +6,22 @@ var input = [
     [0,0,0,0],
 ];
 
+const arch = document.getElementById('select-arch');
+var train_test;
+
+// function resetTestInput() {
+//     let cells = document.getElementsByClassName('cells');
+
+//     for(let i = 0; i < cells.length; i++) {
+//         cells[i].textContent = '-';
+//         cells[i].style.fontWeight = 'normal';
+//         cells[i].style.backgroundColor = 'white';
+//         cells[i].removeEventListener('click');
+//     }
+// }
 
 function initializeTestInput() {
-    const cells = document.getElementsByClassName('cells');
+    let cells = document.getElementsByClassName('cells');
     for(let i = 0; i < cells.length; i++) {
         cells[i].textContent = '-1';
         cells[i].style.fontWeight = 'normal';
@@ -35,10 +48,20 @@ function initializeTestInput() {
 
 async function train() {
     try {
-        const response = await fetch('http://localhost:3000/train');
+        let url = 'http://localhost:3000/train';
+        if(arch.checked) {
+            train_test = ['train_2', 'test_2'];
+        } else {
+            train_test = ['train', 'test'];
+        }
+
+        url += `?train_test=${encodeURIComponent(JSON.stringify(train_test))}`;
+
+        const response = await fetch(url);
         const result = await response.text();
 
         initializeTestInput();
+
         document.getElementById('result').style.visibility = 'visible';
         document.getElementById('result').innerHTML = '<h2>NEURÔNIOS TREINADOS</h2>';
         document.getElementById('weights').style.visibility = 'visible';
@@ -51,12 +74,18 @@ async function train() {
 }
 
 async function sendInput() {
+    if(arch.checked) {
+        train_test = ['train_2', 'test_2'];
+    } else {
+        train_test = ['train', 'test'];
+    }
+
     await fetch('http://localhost:3000/input', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ input })
+        body: JSON.stringify({ input, train_test })
     })
     .then(response => response.text())
     .then(data => {
@@ -64,3 +93,8 @@ async function sendInput() {
         document.getElementById('result').innerHTML = data;
     });
 }
+
+
+
+
+
